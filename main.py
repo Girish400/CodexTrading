@@ -8,8 +8,8 @@ if str(SRC_PATH) not in sys.path:
 
 
 def main() -> int:
-    from codextrading.cli import parse_args
-    from codextrading.service import run_from_args
+    from gstrading.cli import parse_args
+    from gstrading.service import run_from_args
 
     return run_from_args(parse_args())
 

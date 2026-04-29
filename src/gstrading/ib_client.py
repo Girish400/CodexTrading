@@ -14,7 +14,7 @@ from ibapi.contract import Contract
 from ibapi.ticktype import TickTypeEnum
 from ibapi.wrapper import EWrapper
 
-from codextrading.config import AppConfig
+from gstrading.config import AppConfig
 
 LOGGER = logging.getLogger(__name__)
 

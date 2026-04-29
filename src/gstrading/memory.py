@@ -76,7 +76,7 @@ def semantic_score(left: dict[str, float], right: dict[str, float]) -> float:
 @dataclass(slots=True, frozen=True)
 class MemoryConfig:
     project: str
-    database_path: str = ".codextrading/memory.db"
+    database_path: str = ".gstrading/memory.db"
 
     @property
     def database_file(self) -> Path:

@@ -4,14 +4,14 @@ import argparse
 import sys
 from typing import Optional
 
-from codextrading.config import AppConfig
-from codextrading.dev_cli import add_dev_subcommands
-from codextrading.memory_cli import add_memory_subcommands
+from gstrading.config import AppConfig
+from gstrading.dev_cli import add_dev_subcommands
+from gstrading.memory_cli import add_memory_subcommands
 
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="CodexTrading application and session memory tools."
+        description="GSTrading application and session memory tools."
     )
     subparsers = parser.add_subparsers(dest="command")
 

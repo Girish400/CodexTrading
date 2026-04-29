@@ -1,6 +1,6 @@
-# CodexTrading
+# GSTrading
 
-CodexTrading is a production-oriented Python trading application scaffold for Interactive Brokers market data workflows. This repository starts with a reliable `ibapi` + `asyncio` market data client for AAPL and packages the broader trading rules from [`trading_rules.docx`](C:\Users\Girish\Desktop\CodexTrading\trading_rules.docx) into a maintainable project structure that can grow into a full rules engine, execution service, and risk platform.
+GSTrading is a production-oriented Python trading application scaffold for Interactive Brokers market data workflows. This repository starts with a reliable `ibapi` + `asyncio` market data client for AAPL and packages the broader trading rules from [`trading_rules.docx`](C:\Users\Girish\Desktop\GSTrading\trading_rules.docx) into a maintainable project structure that can grow into a full rules engine, execution service, and risk platform.
 
 ## Current Scope
 
@@ -28,21 +28,21 @@ The source rules document defines a large rule set that goes beyond price pollin
 
 Detailed interpretation and implementation sequencing live in:
 
-- [docs/design.md](C:\Users\Girish\Desktop\CodexTrading\docs\design.md)
-- [docs/context.md](C:\Users\Girish\Desktop\CodexTrading\docs\context.md)
-- [docs/project_tracker.md](C:\Users\Girish\Desktop\CodexTrading\docs\project_tracker.md)
-- [docs/session_memory.md](C:\Users\Girish\Desktop\CodexTrading\docs\session_memory.md)
-- [docs/trading_rules.md](C:\Users\Girish\Desktop\CodexTrading\docs\trading_rules.md)
+- [docs/design.md](C:\Users\Girish\Desktop\GSTrading\docs\design.md)
+- [docs/context.md](C:\Users\Girish\Desktop\GSTrading\docs\context.md)
+- [docs/project_tracker.md](C:\Users\Girish\Desktop\GSTrading\docs\project_tracker.md)
+- [docs/session_memory.md](C:\Users\Girish\Desktop\GSTrading\docs\session_memory.md)
+- [docs/trading_rules.md](C:\Users\Girish\Desktop\GSTrading\docs\trading_rules.md)
 
 ## Project Layout
 
 ```text
-CodexTrading/
+GSTrading/
 |-- main.py
 |-- pyproject.toml
 |-- requirements.txt
 |-- Dockerfile
-|-- src/codextrading/
+|-- src/gstrading/
 |   |-- __init__.py
 |   |-- cli.py
 |   |-- config.py
@@ -97,19 +97,19 @@ python -m build
 Start a memory-tracked project session:
 
 ```bash
-python main.py memory start --project CodexTrading --title "Session handoff" --objective "Capture current implementation state"
+python main.py memory start --project GSTrading --title "Session handoff" --objective "Capture current implementation state"
 ```
 
 Build a semantic brief for the next session:
 
 ```bash
-python main.py memory brief --project CodexTrading --query "What should I know before continuing this project?"
+python main.py memory brief --project GSTrading --query "What should I know before continuing this project?"
 ```
 
 Automatically capture a tool run into session memory:
 
 ```bash
-python main.py memory exec --project CodexTrading --session-id <id> -- python -m pytest
+python main.py memory exec --project GSTrading --session-id <id> -- python -m pytest
 ```
 
 Developer wrapper for everyday commands:
@@ -131,8 +131,8 @@ GitHub Actions are included for:
 
 See:
 
-- [.github/workflows/ci.yml](C:\Users\Girish\Desktop\CodexTrading\.github\workflows\ci.yml)
-- [.github/workflows/cd.yml](C:\Users\Girish\Desktop\CodexTrading\.github\workflows\cd.yml)
+- [.github/workflows/ci.yml](C:\Users\Girish\Desktop\GSTrading\.github\workflows\ci.yml)
+- [.github/workflows/cd.yml](C:\Users\Girish\Desktop\GSTrading\.github\workflows\cd.yml)
 
 ## Roadmap
 
@@ -145,5 +145,5 @@ See:
 
 ## Notes
 
-- [`Stratergy.py`](C:\Users\Girish\Desktop\CodexTrading\Stratergy.py) is preserved as a legacy prototype reference.
+- [`Stratergy.py`](C:\Users\Girish\Desktop\GSTrading\Stratergy.py) is preserved as a legacy prototype reference.
 - The new codebase is structured for expansion and testing rather than embedding all behavior in one script.

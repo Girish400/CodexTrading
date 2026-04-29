@@ -2,7 +2,7 @@ import argparse
 import sqlite3
 import sys
 
-from codextrading.dev_cli import run_dev_command
+from gstrading.dev_cli import run_dev_command
 
 
 def test_dev_run_creates_and_reuses_active_session(tmp_path, capsys) -> None:
@@ -11,7 +11,7 @@ def test_dev_run_creates_and_reuses_active_session(tmp_path, capsys) -> None:
     first_args = argparse.Namespace(
         command="dev",
         dev_command="run",
-        project="CodexTrading",
+        project="GSTrading",
         db_path=str(db_path),
         session_id=None,
         title="Dev wrapper test",
@@ -23,7 +23,7 @@ def test_dev_run_creates_and_reuses_active_session(tmp_path, capsys) -> None:
     second_args = argparse.Namespace(
         command="dev",
         dev_command="run",
-        project="CodexTrading",
+        project="GSTrading",
         db_path=str(db_path),
         session_id=None,
         title="Ignored because active session exists",

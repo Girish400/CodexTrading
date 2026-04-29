@@ -1,7 +1,7 @@
 import asyncio
 
-from codextrading.config import AppConfig
-from codextrading.ib_client import AsyncIBMarketDataClient, MarketSnapshot
+from gstrading.config import AppConfig
+from gstrading.ib_client import AsyncIBMarketDataClient, MarketSnapshot
 
 
 def test_market_data_client_updates_bid_and_ask() -> None:

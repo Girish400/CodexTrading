@@ -8,7 +8,7 @@ This repository is being shaped into a production-grade Interactive Brokers trad
 
 - `trading_rules.docx` is the source of truth for strategy, filtering, risk, and execution requirements.
 - `Stratergy.py` is a legacy prototype that contains early logic for opening checks, ORB logic, and momentum scanning.
-- `main.py` and `src/codextrading/` form the new maintainable baseline.
+- `main.py` and `src/gstrading/` form the new maintainable baseline.
 
 ## Rules Context
 

@@ -4,7 +4,7 @@ import argparse
 import json
 import subprocess
 
-from codextrading.memory import MemoryConfig, MemoryStore
+from gstrading.memory import MemoryConfig, MemoryStore
 
 
 def add_memory_subcommands(subparsers: argparse._SubParsersAction) -> None:
@@ -18,7 +18,7 @@ def add_memory_subcommands(subparsers: argparse._SubParsersAction) -> None:
     common.add_argument("--project", required=True, help="Logical project name.")
     common.add_argument(
         "--db-path",
-        default=".codextrading/memory.db",
+        default=".gstrading/memory.db",
         help="SQLite database path for stored memory.",
     )
 

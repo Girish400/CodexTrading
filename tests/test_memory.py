@@ -1,11 +1,11 @@
 import sqlite3
 
-from codextrading.memory import MemoryConfig, MemoryStore
+from gstrading.memory import MemoryConfig, MemoryStore
 
 
 def test_memory_store_generates_summary_and_brief(tmp_path) -> None:
     db_path = tmp_path / "memory.db"
-    store = MemoryStore(MemoryConfig(project="CodexTrading", database_path=str(db_path)))
+    store = MemoryStore(MemoryConfig(project="GSTrading", database_path=str(db_path)))
 
     session = store.start_session(
         title="Session continuity",
@@ -22,7 +22,7 @@ def test_memory_store_generates_summary_and_brief(tmp_path) -> None:
         session_id=session.session_id,
         tool_name="git",
         kind="command",
-        content="Updated src/codextrading/memory.py and docs/session_memory.md.",
+        content="Updated src/gstrading/memory.py and docs/session_memory.md.",
         tags={"git", "files"},
     )
     store.pin_fact(
@@ -46,7 +46,7 @@ def test_memory_store_generates_summary_and_brief(tmp_path) -> None:
 
 def test_memory_store_creates_expected_tables(tmp_path) -> None:
     db_path = tmp_path / "memory.db"
-    MemoryStore(MemoryConfig(project="CodexTrading", database_path=str(db_path)))
+    MemoryStore(MemoryConfig(project="GSTrading", database_path=str(db_path)))
 
     with sqlite3.connect(db_path) as connection:
         tables = {

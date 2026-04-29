@@ -1,4 +1,4 @@
-"""CodexTrading package."""
+"""GSTrading package."""
 
 __all__ = ["__version__"]
 

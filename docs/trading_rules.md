@@ -1,6 +1,6 @@
 # Trading Rules
 
-This Markdown document is a structured conversion of [trading_rules.docx](C:\Users\Girish\Desktop\CodexTrading\trading_rules.docx). The original 100 checklist items are preserved, but reorganized into practical operating categories so they are easier to review, implement, and test.
+This Markdown document is a structured conversion of [trading_rules.docx](C:\Users\Girish\Desktop\GSTrading\trading_rules.docx). The original 100 checklist items are preserved, but reorganized into practical operating categories so they are easier to review, implement, and test.
 
 ## Categorization Model
 

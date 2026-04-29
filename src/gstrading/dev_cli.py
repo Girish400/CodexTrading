@@ -5,8 +5,8 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-from codextrading.memory import MemoryConfig, MemoryStore
-from codextrading.memory_cli import run_memory_exec
+from gstrading.memory import MemoryConfig, MemoryStore
+from gstrading.memory_cli import run_memory_exec
 
 
 def add_dev_subcommands(subparsers: argparse._SubParsersAction) -> None:
@@ -25,7 +25,7 @@ def add_dev_subcommands(subparsers: argparse._SubParsersAction) -> None:
     )
     common.add_argument(
         "--db-path",
-        default=".codextrading/memory.db",
+        default=".gstrading/memory.db",
         help="SQLite database path for stored memory.",
     )
     common.add_argument(

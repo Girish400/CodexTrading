@@ -1,4 +1,4 @@
-from codextrading.cli import parse_args, parse_config
+from gstrading.cli import parse_args, parse_config
 
 
 def test_parse_config_normalizes_symbols_and_generic_ticks() -> None:
@@ -30,7 +30,7 @@ def test_parse_args_supports_memory_subcommand() -> None:
             "memory",
             "start",
             "--project",
-            "CodexTrading",
+            "GSTrading",
             "--title",
             "Sprint handoff",
             "--objective",
@@ -40,7 +40,7 @@ def test_parse_args_supports_memory_subcommand() -> None:
 
     assert args.command == "memory"
     assert args.memory_command == "start"
-    assert args.project == "CodexTrading"
+    assert args.project == "GSTrading"
 
 
 def test_parse_args_supports_dev_subcommand() -> None:
@@ -49,7 +49,7 @@ def test_parse_args_supports_dev_subcommand() -> None:
             "dev",
             "test",
             "--project",
-            "CodexTrading",
+            "GSTrading",
             "--close-session",
             "--",
             "tests/test_cli.py",
@@ -58,5 +58,5 @@ def test_parse_args_supports_dev_subcommand() -> None:
 
     assert args.command == "dev"
     assert args.dev_command == "test"
-    assert args.project == "CodexTrading"
+    assert args.project == "GSTrading"
     assert args.close_session is True
