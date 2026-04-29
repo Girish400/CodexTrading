@@ -41,3 +41,22 @@ def test_parse_args_supports_memory_subcommand() -> None:
     assert args.command == "memory"
     assert args.memory_command == "start"
     assert args.project == "CodexTrading"
+
+
+def test_parse_args_supports_dev_subcommand() -> None:
+    args = parse_args(
+        [
+            "dev",
+            "test",
+            "--project",
+            "CodexTrading",
+            "--close-session",
+            "--",
+            "tests/test_cli.py",
+        ]
+    )
+
+    assert args.command == "dev"
+    assert args.dev_command == "test"
+    assert args.project == "CodexTrading"
+    assert args.close_session is True

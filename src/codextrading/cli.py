@@ -5,6 +5,7 @@ import sys
 from typing import Optional
 
 from codextrading.config import AppConfig
+from codextrading.dev_cli import add_dev_subcommands
 from codextrading.memory_cli import add_memory_subcommands
 
 
@@ -20,6 +21,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     _add_run_arguments(run_parser)
     add_memory_subcommands(subparsers)
+    add_dev_subcommands(subparsers)
     return parser
 
 

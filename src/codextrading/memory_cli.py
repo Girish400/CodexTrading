@@ -93,6 +93,44 @@ def add_memory_subcommands(subparsers: argparse._SubParsersAction) -> None:
     brief_parser.add_argument("--limit", type=int, default=3, help="Number of related summaries.")
 
 
+def run_memory_exec(
+    store: MemoryStore,
+    session_id: str,
+    command_args: list[str],
+    cwd: str | None = None,
+    tags: set[str] | None = None,
+) -> int:
+    completed = subprocess.run(
+        command_args,
+        capture_output=True,
+        text=True,
+        cwd=cwd,
+        check=False,
+    )
+    combined_output = "\n".join(
+        part.strip() for part in [completed.stdout, completed.stderr] if part.strip()
+    )
+    output_excerpt = combined_output[:500] if combined_output else "No output captured."
+    kind = "command" if completed.returncode == 0 else "failure"
+    store.record_observation(
+        session_id=session_id,
+        tool_name=command_args[0],
+        kind=kind,
+        content=f"Ran {' '.join(command_args)}. Output: {output_excerpt}",
+        tags={"auto-captured", "command", *(tags or set())},
+        metadata={
+            "returncode": completed.returncode,
+            "cwd": cwd,
+            "command": command_args,
+        },
+    )
+    if completed.stdout:
+        print(completed.stdout, end="")
+    if completed.stderr:
+        print(completed.stderr, end="")
+    return int(completed.returncode)
+
+
 def run_memory_command(args: argparse.Namespace) -> int:
     store = MemoryStore(
         MemoryConfig(
@@ -129,36 +167,12 @@ def run_memory_command(args: argparse.Namespace) -> int:
             command_args = command_args[1:]
         if not command_args:
             raise ValueError("memory exec requires a command after --")
-
-        completed = subprocess.run(
-            command_args,
-            capture_output=True,
-            text=True,
-            cwd=args.cwd,
-            check=False,
-        )
-        combined_output = "\n".join(
-            part.strip() for part in [completed.stdout, completed.stderr] if part.strip()
-        )
-        output_excerpt = combined_output[:500] if combined_output else "No output captured."
-        kind = "command" if completed.returncode == 0 else "failure"
-        store.record_observation(
+        return run_memory_exec(
+            store=store,
             session_id=args.session_id,
-            tool_name=command_args[0],
-            kind=kind,
-            content=f"Ran {' '.join(command_args)}. Output: {output_excerpt}",
-            tags={"auto-captured", "command"},
-            metadata={
-                "returncode": completed.returncode,
-                "cwd": args.cwd,
-                "command": command_args,
-            },
+            command_args=command_args,
+            cwd=args.cwd,
         )
-        if completed.stdout:
-            print(completed.stdout, end="")
-        if completed.stderr:
-            print(completed.stderr, end="")
-        return int(completed.returncode)
 
     if args.memory_command == "open-item":
         store.add_open_item(

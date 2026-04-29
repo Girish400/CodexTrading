@@ -56,6 +56,15 @@ Automatic capture through a command wrapper:
 python main.py memory exec --project CodexTrading --session-id <id> -- python -m pytest
 ```
 
+Developer wrapper for the normal inner loop:
+
+```powershell
+.\dev.ps1 test
+.\dev.ps1 lint
+.\dev.ps1 build
+.\dev.ps1 run -- python -m pytest tests/test_cli.py
+```
+
 3. Pin durable facts:
 
 ```powershell
@@ -80,6 +89,12 @@ python main.py memory close --project CodexTrading --session-id <id>
 python main.py memory brief --project CodexTrading --query "What matters before I continue the rules engine work?"
 ```
 
+7. Close the active developer session when you want a handoff summary:
+
+```powershell
+.\dev.ps1 close
+```
+
 ## Operational Notes
 
 - Keep observations factual and concise.
@@ -87,3 +102,4 @@ python main.py memory brief --project CodexTrading --query "What matters before 
 - Prefer pinned facts for stable architecture decisions, environments, and recurring operating rules.
 - Prefer open items for next actions, blockers, and unfinished verification work.
 - Use `memory exec` when you want command usage and command output summarized automatically.
+- Use `dev.ps1` or `dev.cmd` when you want common developer commands to be captured automatically without manually managing `memory exec`.

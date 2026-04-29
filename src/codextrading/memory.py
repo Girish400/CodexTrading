@@ -182,6 +182,40 @@ class MemoryStore:
             started_at=started_at,
         )
 
+    def get_active_session(self) -> Optional[SessionRecord]:
+        with self._connect() as connection:
+            row = connection.execute(
+                """
+                SELECT
+                    session_id,
+                    project,
+                    title,
+                    objective,
+                    status,
+                    started_at,
+                    ended_at,
+                    summary_text
+                FROM sessions
+                WHERE project = ? AND status = 'active'
+                ORDER BY updated_at DESC, started_at DESC
+                LIMIT 1
+                """,
+                (self.config.project,),
+            ).fetchone()
+        if row is None:
+            return None
+        return self._row_to_session(row)
+
+    def get_or_create_active_session(
+        self,
+        title: str,
+        objective: str,
+    ) -> tuple[SessionRecord, bool]:
+        active = self.get_active_session()
+        if active is not None:
+            return active, False
+        return self.start_session(title=title, objective=objective), True
+
     def record_observation(
         self,
         session_id: str,
@@ -433,6 +467,18 @@ class MemoryStore:
         if row is None:
             raise ValueError(f"Unknown session id: {session_id}")
         return row
+
+    def _row_to_session(self, row: sqlite3.Row) -> SessionRecord:
+        return SessionRecord(
+            session_id=row["session_id"],
+            project=row["project"],
+            title=row["title"],
+            objective=row["objective"],
+            status=row["status"],
+            started_at=row["started_at"],
+            ended_at=row["ended_at"],
+            summary_text=row["summary_text"],
+        )
 
     def _generate_summary(
         self,

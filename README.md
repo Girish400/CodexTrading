@@ -112,6 +112,15 @@ Automatically capture a tool run into session memory:
 python main.py memory exec --project CodexTrading --session-id <id> -- python -m pytest
 ```
 
+Developer wrapper for everyday commands:
+
+```powershell
+.\dev.ps1 test
+.\dev.ps1 lint
+.\dev.ps1 build
+.\dev.ps1 close
+```
+
 ## CI/CD
 
 GitHub Actions are included for:
